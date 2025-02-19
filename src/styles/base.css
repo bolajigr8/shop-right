@@ -1,0 +1,68 @@
+@tailwind base;
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 500 900;
+  src: url('../fonts/Poppins.woff2');
+  font-display: swap;
+  font-style: normal;
+  font-stretch: 75% 125%;
+}
+
+.loader {
+  width: 35px;
+  aspect-ratio: 1;
+  --color-primary: #000;
+  --color-secondary: #0000;
+  --_g: no-repeat
+    radial-gradient(
+      farthest-side,
+      var(--color-primary) 94%,
+      var(--color-secondary)
+    );
+  background:
+    var(--_g) 0 0,
+    var(--_g) 100% 0,
+    var(--_g) 100% 100%,
+    var(--_g) 0 100%;
+  background-size: 40% 40%;
+  animation: l38 0.5s infinite;
+}
+@keyframes l38 {
+  100% {
+    background-position:
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 0;
+  }
+}
+
+.animate-blink {
+  animation: caret-blink 1.25s ease-out infinite;
+}
+
+@keyframes caret-blink {
+  0%,
+  70%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-opacity {
+  animation: opacity 0.4s ease-in-out;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
