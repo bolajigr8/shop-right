@@ -43,14 +43,17 @@ const Cart = () => {
   const createCheckout = async () => {
     if (session?.user) {
       const stripe = await stripePromise
-      const response = await fetch('http://localhost:3000/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'appication/json' },
-        body: JSON.stringify({
-          items: productData,
-          email: session?.user?.email,
-        }),
-      })
+      const response = await fetch(
+        'https://shopright-micbol.vercel.app/api/checkout',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'appication/json' },
+          body: JSON.stringify({
+            items: productData,
+            email: session?.user?.email,
+          }),
+        }
+      )
       const data = await response.json()
       if (response.ok) {
         stripe?.redirectToCheckout({ sessionId: data.id })
