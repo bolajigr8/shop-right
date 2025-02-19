@@ -8,7 +8,6 @@ import { ProductProps } from '../../../../../type' // Ensure this interface exis
 import { PortableText } from '@portabletext/react'
 import { RichText } from '@/components/RichText'
 
-// Define Props interface correctly for the dynamic page
 interface Props {
   params: {
     slug: string
@@ -16,15 +15,16 @@ interface Props {
 }
 
 // Fix generateStaticParams type and ensure it returns the correct data
-export const generateStaticParams = async () => {
+export const generateStaticParams = async (): Promise<
+  { params: { slug: string } }[]
+> => {
   const query = groq`*[_type == 'product']{
     slug
   }`
 
-  const slugs: { slug: { current: string } }[] = await client.fetch(query) // Ensure we type the response correctly
-  const slugRoutes = slugs.map((slug) => slug?.slug?.current)
-  return slugRoutes.map((slug) => ({
-    slug,
+  const slugs: { slug: { current: string } }[] = await client.fetch(query)
+  return slugs.map((slug) => ({
+    params: { slug: slug?.slug?.current },
   }))
 }
 
