@@ -29,7 +29,7 @@ const Navbar = () => {
     },
     {
       title: 'Profile',
-      link: '/profile',
+      link: '/',
     },
     {
       title: 'Studio',

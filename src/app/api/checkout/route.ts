@@ -27,8 +27,8 @@ export const POST = async (request: NextRequest) => {
       payment_method_types: ['card'],
       line_items: updatedItems,
       mode: 'payment',
-      success_url:
-        'https://shopright-micbol.vercel.app/success?session_id={CHECKOUT_SESSION_ID}',
+      success_url: `https://shopright-micbol.vercel.app/success?session_id=${'CHECKOUT_SESSION_ID'}`,
+
       cancel_url: `${process.env.NEXTAUTH_URL}/cancel`,
       metadata: {
         email,
