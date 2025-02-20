@@ -18,7 +18,7 @@ interface Props {
 const Product = ({ product, bg }: Props) => {
   const dispatch = useDispatch()
   return (
-    <div className='w-full relative group border-[1px] border-transparent hover:shadow-lg duration-200 shadow-gray-900 rounded-md overflow-hidden group'>
+    <div className='w-full relative group  border-transparent shadow-md hover:shadow-xl duration-200  rounded-md overflow-hidden group'>
       <div className='w-full h-80 flex items-center justify-center bg-white overflow-hidden'>
         <div className={`relative ${bg}`}>
           <Link href={`/product/${product?.slug?.current}`}>
