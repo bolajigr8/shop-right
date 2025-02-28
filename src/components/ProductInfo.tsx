@@ -1,11 +1,16 @@
 'use client'
 import { ProductProps } from '../../type'
 import Price from './Price'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '@/redux/orebiSlice'
+import toast from 'react-hot-toast'
 
 interface Props {
   product: ProductProps
 }
 const ProductInfo = ({ product }: Props) => {
+  const dispatch = useDispatch()
+
   return (
     <div className='flex flex-col gap-5'>
       <h2 className='text-4xl font-semibold'>{product?.title}</h2>
@@ -29,7 +34,13 @@ const ProductInfo = ({ product }: Props) => {
         {product?.description}
       </p>
       <p className='text-sm text-gray-500'>Be the first to leave a review.</p>
-      <button className='w-full py-4 bg-primeColor hover:bg-black duration-300 text-white text-lg rounded-md'>
+      <button
+        onClick={() => {
+          dispatch(addToCart(product))
+          toast.success(`${product?.title.substring(0, 12)}... added to cart`)
+        }}
+        className='w-full py-4 bg-primeColor hover:bg-black duration-300 text-white text-lg rounded-md'
+      >
         Add to Cart
       </button>
       <p className='font-normal text-sm'>
